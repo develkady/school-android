@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">SchoolApp</string>
+    <string name="app_name">School</string>
+    <string name="username">email address</string>
+    <string name="password">password</string>
+    <string name="btn_name">Log in</string>
+    <string name="forget">Forget Password? </string>
+    <string name="signUp">Create new account</string>
+    <string name="or">OR</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="remember_me">Remember me!</string>
+
 </resources>
