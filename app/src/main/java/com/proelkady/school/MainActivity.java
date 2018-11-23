@@ -13,15 +13,19 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+
 
 public class MainActivity extends AppCompatActivity {
 
 
     AppCompatEditText email;
     AppCompatEditText pass;
-    RelativeLayout relativeLayout;
+    LinearLayout linearLayout;
     TextInputLayout emailLayout;
     TextInputLayout passLayout;
     AppCompatButton logButton;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     SQLiteOpenHelper openHelper;
     SQLiteDatabase db;
     Cursor cursor;
+    AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("LogIn or SignUp");
+        setTitle("Log in");
+
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
 
         openHelper = new DatabaseHelper(this);
@@ -47,15 +54,16 @@ public class MainActivity extends AppCompatActivity {
         emailLayout = (TextInputLayout) findViewById(R.id.email_TextInputLayout);
         pass = (AppCompatEditText) findViewById(R.id.password_TextField);
         passLayout = (TextInputLayout) findViewById(R.id.password_TextInputEditText);
-        relativeLayout = (RelativeLayout) findViewById(R.id.activity_main);
+        linearLayout = (LinearLayout) findViewById(R.id.activity_main);
         logButton = (AppCompatButton) findViewById(R.id.log_btn);
         forget = (AppCompatTextView) findViewById(R.id.forget_textView);
         signUp = (AppCompatButton) findViewById(R.id.signUp_btn);
 
 
+        awesomeValidation.addValidation(MainActivity.this, R.id.email_TextField, android.util.Patterns.EMAIL_ADDRESS, R.string.email_error);
 
 
-        relativeLayout.setOnClickListener(null);
+        linearLayout.setOnClickListener(null);
 
         email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -69,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 if (email.getText().toString().isEmpty()) {
 
                     emailLayout.setErrorEnabled(true);
-                    emailLayout.setError("please enter your username!");
+                    emailLayout.setError("Please Enter Your Email Address!");
 
                 } else {
 
@@ -94,10 +102,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+
                 if (pass.getText().toString().isEmpty()) {
 
                     passLayout.setErrorEnabled(true);
-                    passLayout.setError("please enter your password!");
+                    passLayout.setError("Password is required");
 
                 } else {
 
@@ -112,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         forget.setOnClickListener(new View.OnClickListener() {
@@ -133,14 +141,16 @@ public class MainActivity extends AppCompatActivity {
                 String userEmail = email.getText().toString();
                 String Passw = pass.getText().toString();
 
-                cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_NAME+" WHERE "+DatabaseHelper.col3+" =? AND "+DatabaseHelper.col4+" =? ",new String[]{userEmail,Passw});
+                cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.col3 + " =? AND " + DatabaseHelper.col4 + " =? ", new String[]{userEmail, Passw});
 
-                if(cursor != null) {
 
-                    if(cursor.getCount() > 0){
+                if (cursor != null && awesomeValidation.validate()) {
+
+                    if (cursor.getCount() > 0) {
 
                         Toast.makeText(MainActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-                    }else{
+
+                    } else{
 
                         Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }
@@ -153,12 +163,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this,SignupActivity.class);
+                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
                 startActivity(intent);
 
             }
         });
-
 
 
     }

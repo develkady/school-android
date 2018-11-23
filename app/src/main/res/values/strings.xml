@@ -1,12 +1,23 @@
 <resources>
     <string name="app_name">School</string>
-    <string name="username">email address</string>
-    <string name="password">password</string>
+    <string name="useremail">Email Address</string>
+    <string name="password">Password</string>
     <string name="btn_name">Log in</string>
     <string name="forget">Forget Password? </string>
     <string name="signUp">Create new account</string>
-    <string name="or">OR</string>
+    <string name="or">Or</string>
     <string name="confirmpassword">Confirm Password</string>
     <string name="remember_me">Remember me!</string>
+    <string name="email_error">Enter valid email address (example@example.com)</string>
+    <string name="pass_error">Enter strong password (contain A-Z and a-z and 0-9 and symbols like(*/_@)</string>
+    <string name="username_error">Please enter your name!</string>
+    <string name="confirmation_error">Password does not match!</string>
+    <string name="lock">lock</string>
+    <string name="logo">logo</string>
+    <string name="account">account</string>
+    <string name="background">background</string>
+    <string name="sign_up">Sign up</string>
+    <string name="user_name">User Name</string>
+    <string name="email_address">Email Address</string>
 
 </resources>

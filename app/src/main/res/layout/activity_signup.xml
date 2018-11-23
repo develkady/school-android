@@ -2,130 +2,143 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signupLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity"
-    android:id="@+id/signupLayout">
+    tools:context=".SignupActivity">
 
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@drawable/back_of_school"
+        android:contentDescription="@string/background"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/school_class"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/layoutInput"
-        android:layout_width="match_parent"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/user_TextInputLayout"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="67dp"
-        android:background="#FFF">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/user_TextField"
+            android:layout_width="346dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundedview"
+            android:drawableStart="@drawable/account"
+            android:drawablePadding="4dp"
+            android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:foregroundGravity="fill_vertical"
+            android:hint="@string/user_name"
+            android:isScrollContainer="false"
+            android:padding="4dp"
+            android:requiresFadingEdge="vertical"
+            android:singleLine="false"
+            android:visibility="visible" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/email_TextInputLayout"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_TextInputLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/email_TextField"
+            android:layout_width="346dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundedview"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="4dp"
+            android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:foregroundGravity="fill_vertical"
+            android:hint="@string/email_address"
+            android:isScrollContainer="false"
+            android:padding="4dp"
+            android:requiresFadingEdge="vertical"
+            android:singleLine="false"
+            android:visibility="visible" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/pass_TextInputEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_TextInputLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:passwordToggleEnabled="false">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/pass_TextField"
+            android:layout_width="346dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundedview"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="4dp"
+            android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:foregroundGravity="fill_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:isScrollContainer="false"
+            android:padding="4dp"
+            android:requiresFadingEdge="vertical"
+            android:singleLine="false"
+            android:visibility="visible" />
+
+    </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/user_TextInputLayout"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/confpass_TextInputEditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pass_TextInputEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:passwordToggleEnabled="false">
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/user_TextField"
-                android:layout_width="338dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/account"
-                android:drawablePadding="4dp"
-                android:hint="Username" />
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/confpass_TextField"
+            android:layout_width="346dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundedview"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="4dp"
+            android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:foregroundGravity="fill_vertical"
+            android:hint="@string/confirmpassword"
+            android:inputType="textPassword"
+            android:isScrollContainer="false"
+            android:padding="4dp"
+            android:requiresFadingEdge="vertical"
+            android:singleLine="false"
+            android:visibility="visible" />
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/email_TextInputLayout"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/user_TextInputLayout">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/email_TextField"
-                android:layout_width="338dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/email"
-                android:drawablePadding="4dp"
-                android:hint="Email address" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/pass_TextInputEditText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            app:passwordToggleEnabled="false"
-            android:layout_below="@id/email_TextInputLayout">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/pass_TextField"
-                android:layout_width="338dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/lock"
-                android:drawablePadding="4dp"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
-
-        </android.support.design.widget.TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/confpass_TextInputEditText"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            app:passwordToggleEnabled="false"
-            android:layout_below="@id/pass_TextInputEditText">
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signup_btn"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/confpass_TextInputEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundedbutton"
+        android:text="@string/sign_up"
+        android:textAllCaps="false"
+        android:textColor="@color/raisedButtonText" />
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/confpass_TextField"
-                android:layout_width="338dp"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/lock"
-                android:drawablePadding="4dp"
-                android:hint="@string/confirmpassword"
-                android:inputType="textPassword" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/signup_btn"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/roundedbutton"
-            android:text="Sign up"
-            android:textAllCaps="false"
-            android:textColor="@color/colorError"
-            android:layout_below="@id/confpass_TextInputEditText"/>
-    </RelativeLayout>
 
 </RelativeLayout>

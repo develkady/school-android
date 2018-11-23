@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -29,11 +31,16 @@ public class SignupActivity extends AppCompatActivity {
     TextInputLayout confPassLayout;
     AppCompatButton signUpBtn;
     RelativeLayout signupLayout;
+    AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        setTitle("Sign up");
+
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
         openHelper = new DatabaseHelper(this);
 
@@ -48,6 +55,13 @@ public class SignupActivity extends AppCompatActivity {
         signupLayout = (RelativeLayout) findViewById(R.id.signupLayout);
 
         signUpBtn = (AppCompatButton) findViewById(R.id.signup_btn);
+
+        String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
+
+        awesomeValidation.addValidation(SignupActivity.this,R.id.user_TextField,"[a-zA-Z\\s]+", R.string.username_error);
+        awesomeValidation.addValidation(SignupActivity.this,R.id.email_TextField,android.util.Patterns.EMAIL_ADDRESS,R.string.email_error);
+        awesomeValidation.addValidation(SignupActivity.this,R.id.pass_TextField,regexPassword,R.string.pass_error);
+        awesomeValidation.addValidation(SignupActivity.this,R.id.confpass_TextField,R.id.pass_TextField,R.string.confirmation_error);
 
         signupLayout.setOnClickListener(null);
 
@@ -166,9 +180,11 @@ public class SignupActivity extends AppCompatActivity {
 
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
+                if(awesomeValidation.validate()) {
 
                     db = openHelper.getWritableDatabase();
 
@@ -178,7 +194,7 @@ public class SignupActivity extends AppCompatActivity {
                     insertData(name, email, pass);
 
                     Toast.makeText(SignupActivity.this, "Register successfully", Toast.LENGTH_SHORT).show();
-
+                }
             }
 
             private void insertData(String name, String email, String pass) {
@@ -195,9 +211,5 @@ public class SignupActivity extends AppCompatActivity {
         });
 
 
-
-
     }
-
-
 }
